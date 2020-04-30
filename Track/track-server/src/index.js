@@ -6,8 +6,15 @@ const bodyParser = require("body-parser");
 const authRoutes = require("./routes/authRoutes");
 const trackRoutes = require("./routes/trackRoutes");
 const requireAuth = require("./middlewares/requireAuth");
+var cors = require("cors");
+
+var corsOptions = {
+  origin: "*",
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
 
 const app = express();
+app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
 app.use(authRoutes);
